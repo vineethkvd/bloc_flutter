@@ -2,5 +2,7 @@ part of 'counter_bloc.dart';
 
 @immutable
 abstract class CounterEvent {}
-class CounterIncEvent extends CounterEvent{}
-class CounterDecEvent extends CounterEvent{}
+
+class Increment extends CounterEvent {}
+
+class Decrement extends CounterEvent {}

@@ -1,4 +1,11 @@
 part of 'post_bloc.dart';
 
 @immutable
-abstract class PostEvent {}
+abstract class PostEvent extends Equatable{
+  @override
+  // TODO: implement props
+  List<Object?> get props => [];
+}
+class PostRequestEvent extends PostEvent{
+
+}

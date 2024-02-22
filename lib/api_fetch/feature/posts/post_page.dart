@@ -2,6 +2,8 @@ import 'package:bloc_flutter/api_fetch/feature/posts/postbloc/post_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../sample_post.dart';
+
 class PostWrapper extends StatefulWidget {
   const PostWrapper({super.key});
 
@@ -34,11 +36,43 @@ class _PostPageState extends State<PostPage> {
       appBar: AppBar(
         title: Text("Fetch Api Bloc"),
         backgroundColor: Colors.teal,
+        actions: [
+          InkWell(
+              onTap: () =>
+                  BlocProvider.of<PostBloc>(context).add(PostRequestEvent()),
+              child: Icon(Icons.refresh))
+        ],
       ),
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        child: Column(children: []),
+        child: Column(children: [
+          BlocBuilder<PostBloc, PostState>(
+            builder: (context, state) {
+              if (state is PostInitial) {
+                return Text("Waiting for post");
+              } else if (state is PostLoading) {
+                return CircularProgressIndicator();
+              } else if (state is PostLoaded) {
+                return Expanded(
+                  child: ListView.builder(
+                    itemCount: state.post.length,
+                    itemBuilder: (context, index) {
+                      return Card(
+                        color: Colors.greenAccent,
+                        child: ListTile(
+                          leading: CircleAvatar(child: Text("${state.post![index].id}")),
+                            title: Text("${state.post![index].title}")),
+                      );
+                    },
+                  ),
+                );
+              } else {
+                return Text("Unhandled state");
+              }
+            },
+          ),
+        ]),
       ),
     );
   }

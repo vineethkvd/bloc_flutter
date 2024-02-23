@@ -6,7 +6,7 @@ import 'package:bloc_flutter/api_fetch/domain/usecases/post_usecase.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-import '../../../sample_post.dart';
+
 
 part 'post_event.dart';
 part 'post_state.dart';

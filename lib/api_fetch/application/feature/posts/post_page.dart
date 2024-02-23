@@ -1,8 +1,8 @@
-import 'package:bloc_flutter/api_fetch/feature/posts/postbloc/post_bloc.dart';
+import 'package:bloc_flutter/api_fetch/application/feature/posts/postbloc/post_bloc.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../sample_post.dart';
 
 class PostWrapper extends StatefulWidget {
   const PostWrapper({super.key});
